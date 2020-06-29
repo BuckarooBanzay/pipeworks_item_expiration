@@ -10,5 +10,6 @@ read_globals = {
 
 	"luaentity",
 	"minetest",
-	"pipeworks"
+	"pipeworks",
+	"monitoring"
 }

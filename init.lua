@@ -1,4 +1,13 @@
 
+local expired_items_metric
+
+if minetest.get_modpath("monitoring") then
+  expired_items_metric = monitoring.counter(
+    "pipeworks_expired_items_count",
+    "Number of expired items"
+  )
+end
+
 local expiration_seconds = 10*60 -- 10 minutes
 
 local function cleanup()
@@ -13,6 +22,10 @@ local function cleanup()
       if delta > expiration_seconds then
         -- entity expired, remove
         entity:remove()
+
+        if expired_items_metric then
+          expired_items_metric.inc()
+        end
       end
     end
   end
