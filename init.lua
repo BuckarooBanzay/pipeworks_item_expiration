@@ -33,4 +33,5 @@ local function cleanup()
   minetest.after(10, cleanup)
 end
 
-minetest.after(10, cleanup)
+-- start initial cleanup after 10 minutes
+minetest.after(600, cleanup)
